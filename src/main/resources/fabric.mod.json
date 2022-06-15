@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "cclient",
+  "version": "${version}",
+  "name": "CClient",
+  "description": "",
+  "authors": [
+    "Cxlina"
+  ],
+  "contact": {
+    "website": "https://celinadev.de"
+  },
+  "license": "MIT",
+  "icon": "assets/cclient/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.github.cxlina.cclient.Client"
+    ]
+  },
+  "mixins": [
+    "cclient.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.7",
+    "fabric": "*",
+    "minecraft": "1.19"
+  }
+}

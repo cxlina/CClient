@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.cxlina.cclient.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "MixinEntityRenderer",
+    "MixinInGameHud",
+    "MixinMinecraftClient",
+    "MixinPlayerEntityRenderer",
+    "MixinSchemas",
+    "MixinTitleScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "MixinInGameHud$IMixinMinecraftClient"
+  ]
+}
