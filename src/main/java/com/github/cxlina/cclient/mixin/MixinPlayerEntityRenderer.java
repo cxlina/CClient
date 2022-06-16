@@ -1,5 +1,6 @@
 package com.github.cxlina.cclient.mixin;
 
+import com.github.cxlina.cclient.cosmetics.wings.WingsRenderer;
 import de.cxlina.clib.color.RGBColor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -24,12 +25,14 @@ public abstract class MixinPlayerEntityRenderer extends LivingEntityRenderer<Abs
         super(ctx, model, shadowRadius);
     }
 
+    @Inject(method = "<init>", at = @At("TAIL"))
+    public void cclient$registerCosmetics(EntityRendererFactory.Context ctx, boolean slim, CallbackInfo ci) {
+        this.addFeature(new WingsRenderer<>((PlayerEntityRenderer) (Object) this, ctx.getModelLoader()));
+    }
+
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
     public void cclient$showNameplate(AbstractClientPlayerEntity player, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-        System.out.println(1);
         if (!player.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId())) {
-            System.out.println("1: " + player.getUuid().toString());
-            System.out.println("2: " + MinecraftClient.getInstance().getSession().getProfile().getId().toString());
             return;
         }
         float f = ((Entity) player).getHeight() + 0.5f;

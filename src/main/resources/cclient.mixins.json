@@ -9,12 +9,13 @@
     "MixinMinecraftClient",
     "MixinPlayerEntityRenderer",
     "MixinSharedConstants",
-    "MixinTitleScreen"
+    "MixinTitleScreen",
+    "IMixinEntityModelLayers",
+    "MixinInGameHud$IMixinMinecraftClient"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "MixinInGameHud$IMixinMinecraftClient"
   ]
 }
