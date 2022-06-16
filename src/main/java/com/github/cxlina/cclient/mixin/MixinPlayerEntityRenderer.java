@@ -25,8 +25,13 @@ public abstract class MixinPlayerEntityRenderer extends LivingEntityRenderer<Abs
     }
 
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
-    public void showNameplate(AbstractClientPlayerEntity player, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-        if (!player.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId())) return;
+    public void cclient$showNameplate(AbstractClientPlayerEntity player, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
+        System.out.println(1);
+        if (!player.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId())) {
+            System.out.println("1: " + player.getUuid().toString());
+            System.out.println("2: " + MinecraftClient.getInstance().getSession().getProfile().getId().toString());
+            return;
+        }
         float f = ((Entity) player).getHeight() + 0.5f;
         matrices.push();
         matrices.translate(0.0, f, 0.0);
@@ -34,7 +39,7 @@ public abstract class MixinPlayerEntityRenderer extends LivingEntityRenderer<Abs
         matrices.scale(-0.02f, -0.02f, 0.025F);
         Matrix4f matrix4f = matrices.peek().getPositionMatrix();
         Text t = Text.of("§7[§bUwU§7] ").copy().append(player.getDisplayName());
-        getTextRenderer().draw(t, -this.getTextRenderer().getWidth(t) / 2, 0, new RGBColor(0, 0, 0, player.isSneaking() ? 100 : 255).getRGBValue(), false, matrix4f, vertexConsumers, !player.isSneaking(), 0, light);
+        getTextRenderer().draw(t, -this.getTextRenderer().getWidth(t) / 2, 0, RGBColor.of(255, 150, 255, player.isSneaking() ? 70 : 255).getRGBValue(), false, matrix4f, vertexConsumers, false, 0, light);
         matrices.pop();
     }
 }

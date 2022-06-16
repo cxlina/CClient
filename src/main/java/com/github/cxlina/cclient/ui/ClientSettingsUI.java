@@ -29,7 +29,7 @@ public class ClientSettingsUI extends Screen {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        fill(matrices, 0, 0, this.width, this.height, new RGBColor(0, 0, 0, 25).getRGBValue());
+        fill(matrices, 0, 0, this.width, this.height, RGBColor.of(0, 0, 0, 25).getRGBValue());
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

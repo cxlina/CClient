@@ -8,7 +8,7 @@
     "MixinInGameHud",
     "MixinMinecraftClient",
     "MixinPlayerEntityRenderer",
-    "MixinSchemas",
+    "MixinSharedConstants",
     "MixinTitleScreen"
   ],
   "injectors": {
