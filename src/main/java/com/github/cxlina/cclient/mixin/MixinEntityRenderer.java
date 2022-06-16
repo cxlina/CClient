@@ -20,6 +20,7 @@ public abstract class MixinEntityRenderer<T extends Entity> {
 
     @ModifyArgs(method = "renderLabelIfPresent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/text/Text;FFIZLnet/minecraft/util/math/Matrix4f;Lnet/minecraft/client/render/VertexConsumerProvider;ZII)I"))
     public void cclient$disableNameplateBackground(Args args) {
+        if (this.dispatcher == null || this.dispatcher.targetedEntity == null) return;
         args.set(3, RGBColor.of(255, 150, 255, this.dispatcher.targetedEntity.isSneaking() ? 70 : 255).getRGBValue());
         args.set(8, 0);
     }

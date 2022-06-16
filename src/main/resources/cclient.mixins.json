@@ -3,19 +3,20 @@
   "minVersion": "0.8",
   "package": "com.github.cxlina.cclient.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "MixinEntityRenderer",
-    "MixinInGameHud",
-    "MixinMinecraftClient",
-    "MixinPlayerEntityRenderer",
-    "MixinSharedConstants",
-    "MixinTitleScreen",
-    "IMixinEntityModelLayers",
-    "MixinInGameHud$IMixinMinecraftClient"
-  ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "IMixinEntityModelLayers",
+    "MixinChatScreen",
+    "MixinClientBrand$MixinClientBrandRetriever",
+    "MixinDebugHud",
+    "MixinEntityRenderer",
+    "MixinInGameHud",
+    "MixinInGameHud$IMixinMinecraftClient",
+    "MixinMinecraftClient",
+    "MixinPlayerEntityRenderer",
+    "MixinSharedConstants",
+    "MixinTitleScreen"
   ]
 }

@@ -19,6 +19,7 @@ public class Client implements ClientModInitializer {
     public void initialize() {
         this.listener = new Listener();
         this.richPresence = new RichPresence();
+        this.richPresence.start();
     }
 
     public static Client getInstance() {
@@ -29,5 +30,9 @@ public class Client implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntityModelLayerRegistry.registerModelLayer(WingsRenderer.LAYER, WingsModel::getTexturedModelData);
+    }
+
+    public RichPresence getRichPresence() {
+        return richPresence;
     }
 }
