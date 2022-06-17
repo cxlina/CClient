@@ -7,6 +7,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.DebugHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.LightType;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,19 +32,23 @@ public class MixinDebugHud {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;renderLeftText(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.BEFORE), cancellable = true)
     public void renderDebugInfo(MatrixStack matrices, CallbackInfo ci) {
         ci.cancel();
-        int i = 2;
+        int y = 2;
         float scale = 1.0F;
         List<String> list = new ArrayList<>();
         list.add("§5CClient 1.19 v" + Constants.CLIENT_VERSION);
         list.add("");
         String s = this.client.getCameraEntity().getBlockPos().getX() + " | " + this.client.getCameraEntity().getBlockPos().getY() + " | " + this.client.getCameraEntity().getBlockPos().getZ();
         list.add("§eCoordinates: §b" + s);
+        list.add("§eDirection: " + this.client.player.getHorizontalFacing().getName());
         list.add("§eBiome: §b" + this.client.getCameraEntity().world.getBiome(this.client.cameraEntity.getBlockPos()).getKey().get().getValue().getPath());
-        
+        int i = this.client.world.getChunkManager().getLightingProvider().getLight(this.client.getCameraEntity().getBlockPos(), 0);
+        int j = this.client.world.getLightLevel(LightType.SKY, this.client.getCameraEntity().getBlockPos());
+        int k = this.client.world.getLightLevel(LightType.BLOCK, this.client.getCameraEntity().getBlockPos());
+        list.add("§eLight: §b" + i + " §7[§eSky: §b" + j + " §7| §eBlock: §b" + k + "§7]");
 
         for (String text : list) {
-            RenderUtil.INSTANCE.drawText(2, i, text, RGBColor.WHITE, scale, "minecraft", "default");
-            i += 9;
+            RenderUtil.INSTANCE.drawText(2, y, text, RGBColor.WHITE, scale, "minecraft", "default");
+            y += 9;
         }
         this.client.getProfiler().pop();
     }

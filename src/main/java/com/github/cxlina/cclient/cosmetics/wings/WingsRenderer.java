@@ -21,25 +21,31 @@ public class WingsRenderer<T extends LivingEntity, M extends EntityModel<T>> ext
 
     private WingsModel<T> model;
     public static EntityModelLayer LAYER = IMixinEntityModelLayers.cclient$registerMain("cosmetics_dragonwings");
+    private static boolean enabled;
 
     public WingsRenderer(FeatureRendererContext<T, M> context, EntityModelLoader loader) {
         super(context);
         this.model = new WingsModel<>(loader.getModelPart(LAYER));
+        enabled = true;
     }
 
     @Override
     public void render(MatrixStack matrixStackIn, VertexConsumerProvider bufferIn, int packedLightIn, T entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
-        if (entityLivingBaseIn instanceof ClientPlayerEntity) {
-            boolean elytraEquipped = entityLivingBaseIn.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA);
-            if (!elytraEquipped) {
-                if (entityLivingBaseIn.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId())) {
-                    ClientPlayerEntity p = (ClientPlayerEntity) entityLivingBaseIn;
-                    matrixStackIn.push();
-                    VertexConsumer builder = bufferIn.getBuffer(RenderLayer.getArmorCutoutNoCull(this.model.texture));
-                    this.model.render(p, matrixStackIn, builder, packedLightIn, OverlayTexture.DEFAULT_UV, partialTicks);
-                    matrixStackIn.pop();
-                }
-            }
-        }
+        if (!(entityLivingBaseIn instanceof ClientPlayerEntity p)) return;
+        boolean elytraEquipped = entityLivingBaseIn.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA);
+        if (elytraEquipped || !entityLivingBaseIn.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId()) || !enabled)
+            return;
+        matrixStackIn.push();
+        VertexConsumer builder = bufferIn.getBuffer(RenderLayer.getArmorCutoutNoCull(this.model.texture));
+        this.model.render(p, matrixStackIn, builder, packedLightIn, OverlayTexture.DEFAULT_UV, partialTicks);
+        matrixStackIn.pop();
+    }
+
+    public static boolean isEnabled() {
+        return enabled;
+    }
+
+    public static void setEnabled(boolean enabled) {
+        WingsRenderer.enabled = enabled;
     }
 }

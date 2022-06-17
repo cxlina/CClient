@@ -23,7 +23,7 @@ public class MixinInGameHud {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderAutosaveIndicator(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.AFTER))
     public void cclient$renderOverlays(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
         if (client.options.debugEnabled) return;
-        RenderUtil.INSTANCE.drawText(2, 2, "§6[§7" + IMixinMinecraftClient.cclient$getCurrentFPS() + " FPS§6]", RGBColor.WHITE, 1.0F, "minecraft", "default");
+        RenderUtil.INSTANCE.drawText(2, 2, "§6[§bFPS: " + IMixinMinecraftClient.cclient$getCurrentFPS() + "§6]", RGBColor.WHITE, 1.0F, "minecraft", "default");
     }
 
     @Mixin(MinecraftClient.class)
