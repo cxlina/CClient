@@ -20,7 +20,7 @@ public class MixinMain {
     private static void login(Args args) {
         try {
             MicrosoftAuthenticator auth = new MicrosoftAuthenticator();
-            MicrosoftAuthResult res = auth.loginWithCredentials(LoginUtil.getEmail(), LoginUtil.getPassword());
+            MicrosoftAuthResult res = auth.loginWithCredentials(LoginUtil.getEmail(), LoginUtil.getPassword()); // The LoginUtil.java isn't included, as it contains personal Data used for logging in into the game inside my IDE.
             args.setAll(res.getProfile().getName(), res.getProfile().getId(), res.getAccessToken(), Optional.of("0"), Optional.of("0"), Session.AccountType.MSA);
         } catch (MicrosoftAuthenticationException e) {
             e.printStackTrace();
