@@ -1,5 +1,6 @@
 package com.github.cxlina.cclient.cosmetics.wings;
 
+import com.github.cxlina.cclient.cosmetics.CosmeticTextures;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.model.*;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -21,7 +22,6 @@ public class WingsModel<T extends LivingEntity> extends AnimalModel<T> {
     private final ModelPart leftWingTip;
     private final ModelPart rightWing;
     private final ModelPart rightWingTip;
-    public Identifier texture = new Identifier("cclient", "textures/cosmetics/wings/0.png");
 
     public WingsModel(ModelPart root) {
         this.leftWing = root.getChild(EntityModelPartNames.LEFT_WING);
@@ -63,7 +63,7 @@ public class WingsModel<T extends LivingEntity> extends AnimalModel<T> {
             }
             this.leftWing.pivotZ = 2;
             this.rightWing.pivotZ = 2;
-            RenderSystem.setShaderTexture(0, this.texture);
+            RenderSystem.setShaderTexture(0, CosmeticTextures.DRAGON_WINGS);
             float f = (float) (System.currentTimeMillis() % 1000L) / 1000.0F * 3.1415927F * 2.0F;
             GL11.glEnable(2884);
             this.rightWing.pitch = (float) Math.toRadians(-65.0D) - (float) Math.cos(f) * 0.2F;

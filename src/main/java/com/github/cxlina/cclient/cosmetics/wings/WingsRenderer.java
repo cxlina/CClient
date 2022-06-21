@@ -1,5 +1,7 @@
 package com.github.cxlina.cclient.cosmetics.wings;
 
+import com.github.cxlina.cclient.Client;
+import com.github.cxlina.cclient.cosmetics.CosmeticTextures;
 import com.github.cxlina.cclient.mixin.IMixinEntityModelLayers;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -31,12 +33,13 @@ public class WingsRenderer<T extends LivingEntity, M extends EntityModel<T>> ext
 
     @Override
     public void render(MatrixStack matrixStackIn, VertexConsumerProvider bufferIn, int packedLightIn, T entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
+        if (!Client.getInstance().getOptions().cosmeticWingsEnabled) return;
         if (!(entityLivingBaseIn instanceof ClientPlayerEntity p)) return;
         boolean elytraEquipped = entityLivingBaseIn.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA);
         if (elytraEquipped || !entityLivingBaseIn.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId()) || !enabled)
             return;
         matrixStackIn.push();
-        VertexConsumer builder = bufferIn.getBuffer(RenderLayer.getArmorCutoutNoCull(this.model.texture));
+        VertexConsumer builder = bufferIn.getBuffer(RenderLayer.getEntityCutoutNoCull(CosmeticTextures.DRAGON_WINGS));
         this.model.render(p, matrixStackIn, builder, packedLightIn, OverlayTexture.DEFAULT_UV, partialTicks);
         matrixStackIn.pop();
     }

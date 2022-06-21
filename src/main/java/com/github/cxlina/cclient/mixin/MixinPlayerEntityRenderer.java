@@ -1,5 +1,6 @@
 package com.github.cxlina.cclient.mixin;
 
+import com.github.cxlina.cclient.cosmetics.cape.CapeRenderer;
 import com.github.cxlina.cclient.cosmetics.wings.WingsRenderer;
 import de.cxlina.clib.color.RGBColor;
 import net.minecraft.client.MinecraftClient;
@@ -28,6 +29,7 @@ public abstract class MixinPlayerEntityRenderer extends LivingEntityRenderer<Abs
     @Inject(method = "<init>", at = @At("TAIL"))
     public void cclient$registerCosmetics(EntityRendererFactory.Context ctx, boolean slim, CallbackInfo ci) {
         this.addFeature(new WingsRenderer<>((PlayerEntityRenderer) (Object) this, ctx.getModelLoader()));
+        this.addFeature(new CapeRenderer((PlayerEntityRenderer) (Object) this));
     }
 
     @Inject(method = "render(Lnet/minecraft/client/network/AbstractClientPlayerEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("TAIL"))
