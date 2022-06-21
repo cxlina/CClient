@@ -1,6 +1,6 @@
 package com.github.cxlina.cclient.mixin;
 
-import com.github.cxlina.cclient.util.LoginUtil;
+import com.github.cxlina.cclient.gitignore.LoginUtil;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthResult;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticationException;
 import fr.litarvan.openauth.microsoft.MicrosoftAuthenticator;

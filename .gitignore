@@ -116,3 +116,6 @@ run/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# Class files most likely containing personal information, or files that shouldn't be included for other reasons
+src/main/java/com/github/cxlina/cclient/gitignore/*
