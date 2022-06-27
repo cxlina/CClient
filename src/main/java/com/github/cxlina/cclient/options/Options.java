@@ -1,32 +1,33 @@
 package com.github.cxlina.cclient.options;
 
 import com.github.cxlina.cclient.Client;
+import com.github.cxlina.cclient.util.BooleanOption;
 
 public class Options {
 
-    public boolean richPresenceEnabled;
-    public boolean cosmeticWingsEnabled;
-    public boolean cosmeticCapeEnabled;
+    public  final BooleanOption richPresence = new BooleanOption("richPresenceEnabled", "Rich Presence");
+    public  final BooleanOption cosmeticWings = new BooleanOption("cosmeticWingsEnabled", "Wings");
+    public  final BooleanOption cosmeticCape = new BooleanOption("cosmeticCapeEnabled", "Cape");
+
+    public final BooleanOption[] options = new BooleanOption[]{
+            richPresence,
+            cosmeticWings,
+            cosmeticCape
+    };
 
     public Options() {
         this.load();
     }
 
     public void save() {
-        new Thread(() -> {
-            Client.getInstance().getConfig().set("richPresenceEnabled", this.richPresenceEnabled);
-            Client.getInstance().getConfig().set("cosmeticWingsEnabled", this.cosmeticWingsEnabled);
-            Client.getInstance().getConfig().set("cosmeticCapeEnabled", this.cosmeticCapeEnabled);
-            System.out.println("Saved.");
-        }).start();
+        for (BooleanOption o : this.options) {
+            Client.getInstance().getConfig().set(o.getOptionValue(), o.isEnabled());
+        }
     }
 
     public void load() {
-        new Thread(() -> {
-            this.richPresenceEnabled = Client.getInstance().getConfig().get(Boolean.class, "richPresenceEnabled", true);
-            this.cosmeticWingsEnabled = Client.getInstance().getConfig().get(Boolean.class, "cosmeticWingsEnabled", true);
-            this.cosmeticCapeEnabled = Client.getInstance().getConfig().get(Boolean.class, "cosmeticCapeEnabled", true);
-            System.out.println("Loaded.");
-        }).start();
+        for (BooleanOption o : this.options) {
+            o.setEnabled(Client.getInstance().getConfig().get(Boolean.class, o.getOptionValue(), true));
+        }
     }
 }

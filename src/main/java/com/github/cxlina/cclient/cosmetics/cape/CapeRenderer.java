@@ -30,7 +30,7 @@ public class CapeRenderer extends FeatureRenderer<AbstractClientPlayerEntity, Pl
     }
 
     public void render(MatrixStack pMatrixStack, VertexConsumerProvider pBuffer, int pPackedLight, AbstractClientPlayerEntity pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        if (pLivingEntity.canRenderCapeTexture() && !pLivingEntity.isInvisible() && !pLivingEntity.isPartVisible(PlayerModelPart.CAPE) && Client.getInstance().getOptions().cosmeticCapeEnabled) {
+        if (pLivingEntity.canRenderCapeTexture() && !pLivingEntity.isInvisible() && !pLivingEntity.isPartVisible(PlayerModelPart.CAPE) && Client.getInstance().getOptions().cosmeticCape.isEnabled()) {
             ItemStack itemstack = pLivingEntity.getEquippedStack(EquipmentSlot.CHEST);
             if (!itemstack.isOf(Items.ELYTRA)) {
                 pMatrixStack.push();

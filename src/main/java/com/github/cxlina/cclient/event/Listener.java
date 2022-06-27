@@ -1,5 +1,6 @@
 package com.github.cxlina.cclient.event;
 
+import com.github.cxlina.cclient.event.impl.ClientTickEvent;
 import com.github.cxlina.cclient.event.impl.SendChatMessageEvent;
 import com.github.cxlina.cclient.event.impl.SendClientCommandEvent;
 import de.cxlina.clib.event.EventHandler;
@@ -9,6 +10,10 @@ public class Listener {
 
     public Listener() {
         EventUtil.register(this);
+    }
+
+    @EventHandler
+    public void onTick(ClientTickEvent e) {
     }
 
     @EventHandler

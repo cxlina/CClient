@@ -33,7 +33,7 @@ public class WingsRenderer<T extends LivingEntity, M extends EntityModel<T>> ext
 
     @Override
     public void render(MatrixStack matrixStackIn, VertexConsumerProvider bufferIn, int packedLightIn, T entityLivingBaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
-        if (!Client.getInstance().getOptions().cosmeticWingsEnabled) return;
+        if (!Client.getInstance().getOptions().cosmeticWings.isEnabled()) return;
         if (!(entityLivingBaseIn instanceof ClientPlayerEntity p)) return;
         boolean elytraEquipped = entityLivingBaseIn.getEquippedStack(EquipmentSlot.CHEST).isOf(Items.ELYTRA);
         if (elytraEquipped || !entityLivingBaseIn.getUuid().equals(MinecraftClient.getInstance().getSession().getProfile().getId()) || !enabled)

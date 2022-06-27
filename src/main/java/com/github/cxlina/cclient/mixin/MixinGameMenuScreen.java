@@ -1,6 +1,6 @@
 package com.github.cxlina.cclient.mixin;
 
-import com.github.cxlina.cclient.ui.ClientSettingsUI;
+import com.github.cxlina.cclient.ui.screen.ClientSettingsUI;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.MessageScreen;
 import net.minecraft.client.gui.screen.Screen;

@@ -33,4 +33,8 @@ public class Configuration {
             this.set(path, def);
         return (T) this.file.get(path, def);
     }
+
+    public YamlFile getFile() {
+        return file;
+    }
 }

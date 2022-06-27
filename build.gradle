@@ -16,17 +16,18 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    include(modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"))
-    include(modImplementation('de.cxlina.api:CLib:1.0'))
+
     include(implementation('club.minnced:java-discord-rpc:2.0.2'))
     include(implementation('com.github.Litarvan:OpenAuth:1.1.2'))
     include(implementation('me.carleslc.Simple-YAML:Simple-Yaml:1.8'))
+
+    include(modImplementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"))
+    include(modImplementation('de.cxlina.api:CLib:1.0'))
 }
 
 processResources {
     inputs.property "version", project.version
     filteringCharset "UTF-8"
-
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }

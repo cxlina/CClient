@@ -18,6 +18,7 @@
     "MixinInGameHud$IMixinMinecraftClient",
     "MixinMain",
     "MixinMinecraftClient",
+    "MixinMinecraftClient$IMixinMinecraftClient",
     "MixinPlayerEntityRenderer",
     "MixinSharedConstants",
     "MixinTitleScreen"

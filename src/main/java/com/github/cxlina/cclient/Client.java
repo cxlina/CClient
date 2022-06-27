@@ -7,6 +7,7 @@ import com.github.cxlina.cclient.discord.RichPresence;
 import com.github.cxlina.cclient.event.Listener;
 import com.github.cxlina.cclient.io.Configuration;
 import com.github.cxlina.cclient.options.Options;
+import com.github.cxlina.cclient.util.KeyBindings;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -20,13 +21,14 @@ public class Client implements ClientModInitializer {
     private RichPresence richPresence;
     private Configuration config;
     private Options options;
+    private KeyBindings keyBindings;
 
     public void initialize() {
         this.config = new Configuration("./cclient.yml");
         this.options = new Options();
         this.listener = new Listener();
         this.richPresence = new RichPresence();
-        if (this.options.richPresenceEnabled)
+        if (this.options.richPresence.isEnabled())
             this.richPresence.start();
     }
 
@@ -37,6 +39,7 @@ public class Client implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        this.keyBindings = new KeyBindings();
         EntityModelLayerRegistry.registerModelLayer(WingsRenderer.LAYER, WingsModel::getTexturedModelData);
         CosmeticTextures.scheduleCapeAnimationUpdates();
     }
@@ -52,4 +55,5 @@ public class Client implements ClientModInitializer {
     public Options getOptions() {
         return options;
     }
+
 }
