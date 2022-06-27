@@ -35,7 +35,7 @@ public class MixinDebugHud {
         int y = 2;
         float scale = 1.0F;
         List<String> list = new ArrayList<>();
-        list.add("§5CClient 1.19 v" + Constants.CLIENT_VERSION);
+        list.add("§5CClient 1.19 " + Constants.CLIENT_VERSION);
         list.add("");
         String s = this.client.getCameraEntity().getBlockPos().getX() + " | " + this.client.getCameraEntity().getBlockPos().getY() + " | " + this.client.getCameraEntity().getBlockPos().getZ();
         list.add("§eCoordinates: §b" + s);
