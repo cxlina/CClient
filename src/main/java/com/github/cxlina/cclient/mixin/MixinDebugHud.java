@@ -29,6 +29,7 @@ public class MixinDebugHud {
     @Shadow
     private @Nullable ChunkPos pos;
 
+    /*
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/DebugHud;renderLeftText(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.BEFORE), cancellable = true)
     public void renderDebugInfo(MatrixStack matrices, CallbackInfo ci) {
         ci.cancel();
@@ -52,4 +53,5 @@ public class MixinDebugHud {
         }
         this.client.getProfiler().pop();
     }
+     */
 }

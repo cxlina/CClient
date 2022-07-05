@@ -16,10 +16,10 @@
     "MixinGameRenderer",
     "MixinInGameHud",
     "MixinInGameHud$IMixinMinecraftClient",
-    "MixinMain",
     "MixinMinecraftClient",
     "MixinMinecraftClient$IMixinMinecraftClient",
     "MixinPlayerEntityRenderer",
+    "MixinScreen",
     "MixinSharedConstants",
     "MixinTitleScreen"
   ]

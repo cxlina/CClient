@@ -14,7 +14,7 @@ public class SettingsButtonWidget extends ButtonWidget {
 
     @Override
     public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        fill(matrices, this.x, this.y, this.x + this.width, this.y + this.height, RGBColor.of(0, 0, 0, this.isHovered() ? 150 : 125).getRGBValue());
+        fill(matrices, this.x, this.y, this.x + this.width, this.y + this.height, RGBColor.of(0, 0, 0, this.isHovered() ? 200 : 125).getRGBValue());
         drawCenteredText(matrices, MinecraftClient.getInstance().textRenderer, this.getMessage(), this.x + this.width / 2, this.y + (this.height - 8) / 2, this.isHovered() ? RGBColor.WHITE.getRGBValue() : RGBColor.LIGHT_GRAY.getRGBValue());
         if (this.isHovered()) {
             this.renderTooltip(matrices, mouseX, mouseY);

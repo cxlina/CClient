@@ -14,8 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ChatScreen.class)
 public abstract class MixinChatScreen extends Screen {
 
-    @Shadow
-    protected TextFieldWidget chatField;
+    @Shadow protected TextFieldWidget chatField;
 
     protected MixinChatScreen(Text title) {
         super(title);
